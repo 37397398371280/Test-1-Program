@@ -1,0 +1,13 @@
+function CustomLink() {
+  var htmlCode = `<!DOCTYPE html>
+  <html lang="en-US">
+  <head>
+  <script>history.pushState(null, null, "YOUR CUSTOM LINK GOES LINK OK?");</script>
+  <script src="/__replco/static/devtools/devtools.js"></script>
+  </head>
+  </html>`;
+
+  document.write(htmlCode);
+}
+
+CustomLink();

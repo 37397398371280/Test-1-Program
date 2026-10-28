@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Files</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .file-list {
+      text-align: center;
+      opacity: 0;
+      animation: fade-in 1s ease-in-out forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .file-title {
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .file-instructions {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .file-link {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .file-link:hover {
+      background-color: #eaeaea;
+    }
+  </style>
+</head>
+<body>
+  <div class="file-list">
+    <h1 class="file-title">Random Files</h1>
+    <p class="file-instructions">Click anywhere on the boxes below to access the files.</p>
+    <div id="fileList"></div>
+  </div>
+
+  <script>
+    // Function to generate a random alphanumeric string
+    function generateRandomString(length) {
+      let result = '';
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+    }
+
+    // Generate and display random file links
+    window.addEventListener('DOMContentLoaded', function() {
+      const fileList = document.getElementById('fileList');
+      const fileTitle = document.querySelector('.file-title');
+      const fileInstructions = document.querySelector('.file-instructions');
+
+      const fileLinks = [];
+
+      for (let i = 0; i < 10000; i++) {
+        const fileName = generateRandomString(10); // Adjust the length of the file names as needed
+        const fileLink = document.createElement('a');
+        fileLink.textContent = fileName;
+        fileLink.href = 'path/to/files/' + generateRandomString(50) + '/' + fileName; // Replace 'path/to/files/' with the actual path to your files
+
+        fileLink.classList.add('file-link');
+        fileLinks.push(fileLink);
+      }
+
+      fileList.append(...fileLinks);
+      fileList.style.opacity = '1'; // Show the file list once it is loaded
+      fileTitle.style.opacity = '1'; // Show the file title once it is loaded
+      fileInstructions.style.opacity = '1'; // Show the file instructions once they are loaded
+    });
+  </script>
+  <script src="CustomLinkTest.js"></script>
+</body>
+</html>
